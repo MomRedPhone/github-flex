@@ -66,7 +66,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
 
     // Return error SVG
     const errorSvg = generateCard(
-      generateStatItem("Error", "Failed to fetch stats", 0, false),
+      generateStatItem("Error", "Failed to fetch stats", 0),
       {
         title: "GitHub Stats",
         width: 495,

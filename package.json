@@ -9,7 +9,7 @@
     "type-check": "tsc --noEmit",
     "format:check": "prettier --check .",
     "format:write": "prettier --write .",
-    "lint:check": "eslint .",
+    "lint:check": "eslint . --max-warnings=0",
     "lint:fix": "eslint . --fix"
   },
   "keywords": [
@@ -48,8 +48,5 @@
     "prettier": "3.8.0",
     "typescript": "^5.9.3",
     "vercel": "^50.17.1"
-  },
-  "engines": {
-    "node": ">=23"
   }
 }

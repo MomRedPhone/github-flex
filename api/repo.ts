@@ -1,7 +1,6 @@
 import { VercelRequest, VercelResponse } from "@vercel/node";
-import { generateCard, escapeXml } from "../lib/card.js";
+import { generateCard, generateStatItem } from "../lib/card.js";
 import { ThemeName, RepoData, GitHubRepoResponse } from "../lib/types.js";
-import { themes } from "../lib/themes.js";
 
 async function fetchRepoStats(
   owner: string,
@@ -71,53 +70,19 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     // Fetch repo stats
     const repoData = await fetchRepoStats(username, repo, githubToken);
 
-    // Get theme colors
-    const colors = themes[selectedTheme];
+    // Generate stat items using the same layout as stats card
+    const statItems = [
+      generateStatItem("Stars", repoData.stars.toLocaleString(), 0),
+      generateStatItem("Forks", repoData.forks.toLocaleString(), 1),
+      generateStatItem("Language", repoData.language, 2),
+      generateStatItem("Open Issues", repoData.openIssues.toLocaleString(), 3),
+    ].join("");
 
-    // Generate repo card content
-    const truncatedDesc = repoData.description.substring(0, 60);
-    const content = `
-      <g transform="translate(25, 55)">
-        <text class="stat" y="0" style="font-size: 12px; fill: ${colors.text};">
-          ${escapeXml(truncatedDesc)}${repoData.description.length > 60 ? "..." : ""}
-        </text>
-      </g>
-
-      <g class="stagger" style="animation-delay: 0ms" transform="translate(25, 90)">
-        <svg x="0" y="-12" width="16" height="16" fill="${colors.icon}">
-          <path d="M8 .25a.75.75 0 01.673.418l1.882 3.815 4.21.612a.75.75 0 01.416 1.279l-3.046 2.97.719 4.192a.75.75 0 01-1.088.791L8 12.347l-3.766 1.98a.75.75 0 01-1.088-.79l.72-4.194L.818 6.374a.75.75 0 01.416-1.28l4.21-.611L7.327.668A.75.75 0 018 .25z"/>
-        </svg>
-        <text class="stat" x="22" y="0">${repoData.stars.toLocaleString()} stars</text>
-      </g>
-
-      <g class="stagger" style="animation-delay: 150ms" transform="translate(25, 115)">
-        <svg x="0" y="-12" width="16" height="16" fill="${colors.icon}">
-          <path d="M5 3.25a.75.75 0 11-1.5 0 .75.75 0 011.5 0zm0 2.122a2.25 2.25 0 10-1.5 0v.878A2.25 2.25 0 005.75 8.5h1.5v2.128a2.251 2.251 0 101.5 0V8.5h1.5a2.25 2.25 0 002.25-2.25v-.878a2.25 2.25 0 10-1.5 0v.878a.75.75 0 01-.75.75h-4.5A.75.75 0 015 6.25v-.878z"/>
-        </svg>
-        <text class="stat" x="22" y="0">${repoData.forks.toLocaleString()} forks</text>
-      </g>
-
-      <g class="stagger" style="animation-delay: 300ms" transform="translate(25, 140)">
-        <svg x="0" y="-12" width="16" height="16" fill="${colors.icon}">
-          <circle cx="8" cy="8" r="8"/>
-        </svg>
-        <text class="stat" x="22" y="0">${escapeXml(repoData.language)}</text>
-      </g>
-
-      <g class="stagger" style="animation-delay: 450ms" transform="translate(25, 165)">
-        <svg x="0" y="-12" width="16" height="16" fill="${colors.icon}">
-          <path d="M8 9.5a1.5 1.5 0 100-3 1.5 1.5 0 000 3z"/>
-          <path fill-rule="evenodd" d="M8 0a8 8 0 100 16A8 8 0 008 0zM1.5 8a6.5 6.5 0 1113 0 6.5 6.5 0 01-13 0z"/>
-        </svg>
-        <text class="stat" x="22" y="0">${repoData.openIssues.toLocaleString()} open issues</text>
-      </g>
-    `;
-
-    // Generate the card (title will be escaped inside generateCard)
-    const svg = generateCard(content, {
-      title: repoData.name,
-      width: 450,
-      height: 210,
+    // Generate the card with the same dimensions as stats card
+    const svg = generateCard(statItems, {
+      title: `${username}/${repo}`,
+      width: 500,
+      height: 200,
       theme: selectedTheme,
       hideBorder: hide_border === "true",
     });
@@ -132,10 +97,10 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
 
     // Return error SVG
     const errorSvg = generateCard(
-      `<g transform="translate(25, 60)"><text class="stat">Failed to fetch repository stats</text></g>`,
+      generateStatItem("Error", "Failed to fetch repository stats", 0),
       {
         title: "Repository Stats",
-        width: 450,
+        width: 500,
         height: 120,
         theme: selectedTheme,
       },

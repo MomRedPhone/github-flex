@@ -141,7 +141,6 @@ export function generateStatItem(
   label: string,
   value: string | number,
   index: number,
-  bold = true,
 ): string {
   // Arrange stats in a 2-column grid layout with playful rotations
   const col = index % 2;

@@ -111,7 +111,51 @@ node sandbox/test-svg.js octocat tokyonight
 
 ---
 
-### 5. Test Mock Stats SVG (No API Required)
+### 5. Test Repository Stats
+
+Tests the repository statistics fetching:
+
+```bash
+node sandbox/test-repo.js [owner] [repo]
+```
+
+**Examples:**
+
+```bash
+node sandbox/test-repo.js torvalds linux
+node sandbox/test-repo.js facebook react
+```
+
+**Output:**
+
+- Repository name and description
+- Stars, forks, language, and open issues
+
+---
+
+### 6. Test Repository SVG Generation
+
+Generates repository stats SVG files that you can open in a browser:
+
+```bash
+node sandbox/test-repo-svg.js [owner] [repo] [theme]
+```
+
+**Examples:**
+
+```bash
+node sandbox/test-repo-svg.js torvalds linux dark
+node sandbox/test-repo-svg.js facebook react gruvbox
+```
+
+**Output:**
+
+- SVG file saved to `sandbox/output-{owner}-{repo}-{theme}.svg`
+- Open the file in any web browser to view the badge
+
+---
+
+### 7. Test Mock Stats SVG (No API Required)
 
 Generates stats SVG files with mock data (useful when GitHub API is rate-limited):
 

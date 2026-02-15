@@ -76,7 +76,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
 
     // Generate the card
     const svg = generateCard(languageItems, {
-      title: hide_title === "true" ? "" : "Most Used Languages",
+      title: hide_title === "true" ? "" : `${username}'s Most Used Languages`,
       width: 450,
       height: cardHeight,
       theme: selectedTheme,

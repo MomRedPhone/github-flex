@@ -16,7 +16,6 @@
 
 [//]: # "Please check all that apply"
 
-- [ ] Manually tested by running `pnpm dev` and viewing all pages
 - [ ] It can build a prod build with `pnpm build`
 - [ ] Documentation and comments added
 - [ ] No console warnings or errors
