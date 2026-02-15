@@ -8,6 +8,16 @@
       "maxDuration": 10
     }
   },
+  "rewrites": [
+    {
+      "source": "/",
+      "destination": "/public/index.html"
+    },
+    {
+      "source": "/og-image.png",
+      "destination": "/public/og-image.png"
+    }
+  ],
   "headers": [
     {
       "source": "/api/(.*)",

@@ -25,14 +25,17 @@ Display your GitHub statistics including stars, commits, PRs, issues, and contri
 **Parameters:**
 
 - `username` (required) - Your GitHub username
-- `theme` (optional) - `default`, `dark`, `radical`, `merko`, `gruvbox`, `tokyonight`, `bubblegum`, `ocean` (default: `default`)
+- `theme` (optional) - `default`, `dark`, `radical`, `merko`, `gruvbox`, `tokyonight`, `bubblegum`, `ocean` (default:
+  `default`)
 - `hide_border` (optional) - `true` or `false` (default: `false`)
 - `hide_title` (optional) - `true` or `false` (default: `false`)
 
 **Examples:**
 
-![Stats](https://github-flex.vercel.app/api/stats?username=torvalds&theme=dark)
-![Stats](https://github-flex.vercel.app/api/stats?username=torvalds&theme=radical&hide_border=true)
+<p align="center">
+  <img src="https://github-flex.vercel.app/api/stats?username=torvalds&theme=dark&hide_border=true" alt="Stats" />
+  <img src="https://github-flex.vercel.app/api/stats?username=shadcn&theme=radical" alt="Stats" />
+</p>
 
 ### `/api/languages`
 
@@ -41,7 +44,8 @@ Show your most used programming languages across all repositories.
 **Parameters:**
 
 - `username` (required) - Your GitHub username
-- `theme` (optional) - `default`, `dark`, `radical`, `merko`, `gruvbox`, `tokyonight`, `bubblegum`, `ocean` (default: `default`)
+- `theme` (optional) - `default`, `dark`, `radical`, `merko`, `gruvbox`, `tokyonight`, `bubblegum`, `ocean` (default:
+  `default`)
 - `langs_count` (optional) - Number of languages to display (default: `5`)
 - `exclude` (optional) - Comma-separated list of languages to exclude (e.g., `HTML,CSS`)
 - `hide_border` (optional) - `true` or `false` (default: `false`)
@@ -49,9 +53,10 @@ Show your most used programming languages across all repositories.
 
 **Examples:**
 
-![Languages](https://github-flex.vercel.app/api/languages?username=torvalds&theme=tokyonight)
-![Languages](https://github-flex.vercel.app/api/languages?username=torvalds&langs_count=8)
-![Languages](https://github-flex.vercel.app/api/languages?username=torvalds&exclude=HTML,CSS,Makefile)
+<p align="center">
+  <img src="https://github-flex.vercel.app/api/languages?username=torvalds&theme=tokyonight" alt="Languages" />
+  <img src="https://github-flex.vercel.app/api/languages?username=torvalds&langs_count=5" alt="Languages" />
+</p>
 
 ### `/api/repo`
 
@@ -61,13 +66,16 @@ Display statistics for a specific repository including stars, forks, language, a
 
 - `username` (required) - Repository owner's username
 - `repo` (required) - Repository name
-- `theme` (optional) - `default`, `dark`, `radical`, `merko`, `gruvbox`, `tokyonight`, `bubblegum`, `ocean` (default: `default`)
+- `theme` (optional) - `default`, `dark`, `radical`, `merko`, `gruvbox`, `tokyonight`, `bubblegum`, `ocean` (default:
+  `default`)
 - `hide_border` (optional) - `true` or `false` (default: `false`)
 
 **Examples:**
 
-![Repo](https://github-flex.vercel.app/api/repo?username=torvalds&repo=linux&theme=gruvbox)
-![Repo](https://github-flex.vercel.app/api/repo?username=facebook&repo=react&hide_border=true)
+<p align="center">
+  <img src="https://github-flex.vercel.app/api/repo?username=torvalds&repo=linux&theme=gruvbox" alt="Repo" />
+  <img src="https://github-flex.vercel.app/api/repo?username=facebook&repo=react&hide_border=true" alt="Repo" />
+</p>
 
 ## 💻 Local Development
 
