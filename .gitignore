@@ -137,3 +137,7 @@ dist
 # Vite logs files
 vite.config.js.timestamp-*
 vite.config.ts.timestamp-*
+
+# Sandbox test outputs
+sandbox/output-*.svg
+sandbox/output-*-languages-*.svg
