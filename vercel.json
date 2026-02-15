@@ -1,4 +1,7 @@
 {
+  "buildCommand": "pnpm build",
+  "outputDirectory": "dist",
+  "installCommand": "pnpm install",
   "functions": {
     "api/**/*.ts": {
       "memory": 1024,
