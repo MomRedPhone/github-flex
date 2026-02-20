@@ -369,12 +369,63 @@
         border: 2px solid #e2e8f0;
         font-size: 1.1em;
         transition: all 0.3s ease;
+        cursor: pointer;
+        user-select: none;
       }
 
       .theme-badge:hover {
         transform: translateY(-3px);
         border-color: #ff6b6b;
         box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      }
+
+      .preview-svg-wrapper {
+        margin-top: 25px;
+        display: flex;
+        justify-content: center;
+        overflow-x: auto;
+        padding: 5px 0;
+      }
+
+      .preview-svg-wrapper svg {
+        max-width: 100%;
+        height: auto;
+        border-radius: 8px;
+      }
+
+      .card-type-selector {
+        display: flex;
+        margin-bottom: 25px;
+        border-radius: 8px;
+        overflow: hidden;
+        border: 2px solid #e2e8f0;
+        width: fit-content;
+      }
+
+      .card-type-btn {
+        background: #f7fafc;
+        border: none;
+        border-right: 2px solid #e2e8f0;
+        padding: 10px 18px;
+        cursor: pointer;
+        font-family: "Indie Flower", "Comic Sans MS", cursive;
+        font-size: 1em;
+        color: #5f6368;
+        transition: all 0.25s ease;
+      }
+
+      .card-type-btn:last-child {
+        border-right: none;
+      }
+
+      .card-type-btn:hover {
+        background: #fff5f5;
+        color: #ff6b6b;
+      }
+
+      .card-type-btn.active {
+        background: #ff6b6b;
+        color: white;
       }
 
       .cta-button {
@@ -419,6 +470,15 @@
         }
         .card {
           padding: 20px;
+        }
+        .theme-grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+        .card-type-selector {
+          width: 100%;
+        }
+        .card-type-btn {
+          flex: 1;
         }
       }
 
@@ -554,19 +614,700 @@
       </div>
 
       <div class="card">
-        <h2>Available Themes</h2>
+        <h2>Available Card Types & Themes</h2>
+        <p style="margin-bottom: 15px; color: #5f6368">Choose a card type:</p>
+        <div class="card-type-selector">
+          <button class="card-type-btn active" data-card="stats">
+            User Stats
+          </button>
+          <button class="card-type-btn" data-card="repo">Repo Stats</button>
+          <button class="card-type-btn" data-card="langs">Top Languages</button>
+        </div>
         <p style="margin-bottom: 20px; color: #5f6368">
-          Choose from these awesome themes:
+          Click a theme to preview it live:
         </p>
-        <div class="theme-grid">
-          <div class="theme-badge">default</div>
-          <div class="theme-badge">dark</div>
-          <div class="theme-badge">radical</div>
-          <div class="theme-badge">merko</div>
-          <div class="theme-badge">gruvbox</div>
-          <div class="theme-badge">tokyonight</div>
-          <div class="theme-badge">bubblegum</div>
-          <div class="theme-badge">ocean</div>
+        <div class="theme-grid" id="theme-grid">
+          <div class="theme-badge" data-theme="default">default</div>
+          <div class="theme-badge" data-theme="dark">dark</div>
+          <div class="theme-badge" data-theme="radical">radical</div>
+          <div class="theme-badge" data-theme="merko">merko</div>
+          <div class="theme-badge" data-theme="gruvbox">gruvbox</div>
+          <div class="theme-badge" data-theme="tokyonight">tokyonight</div>
+          <div class="theme-badge" data-theme="bubblegum">bubblegum</div>
+          <div class="theme-badge" data-theme="ocean">ocean</div>
+        </div>
+
+        <div class="preview-svg-wrapper">
+          <!-- User Stats Card Preview -->
+          <svg
+            class="preview-svg"
+            id="preview-stats"
+            width="500"
+            height="240"
+            viewBox="0 0 500 240"
+            xmlns="http://www.w3.org/2000/svg"
+            role="img"
+            style="
+              --preview-bg: #fffef9;
+              --preview-title: #ff6b6b;
+              --preview-text: #5f6368;
+              --preview-icon: #4ecdc4;
+              --preview-border: #ff6b6b;
+            "
+          >
+            <defs>
+              <style>
+                @import url("https://fonts.googleapis.com/css2?family=Indie+Flower&amp;family=Permanent+Marker&amp;display=swap");
+                #preview-stats .pv-bg {
+                  fill: var(--preview-bg);
+                  stroke: var(--preview-border);
+                  transition:
+                    fill 0.35s ease,
+                    stroke 0.35s ease;
+                }
+                #preview-stats .pv-title {
+                  fill: var(--preview-title);
+                  font:
+                    700 22px "Permanent Marker",
+                    "Comic Sans MS",
+                    cursive;
+                  transition: fill 0.35s ease;
+                }
+                #preview-stats .pv-underline {
+                  stroke: var(--preview-title);
+                  transition: stroke 0.35s ease;
+                }
+                #preview-stats .pv-label {
+                  fill: var(--preview-text);
+                  font:
+                    400 13px "Indie Flower",
+                    "Comic Sans MS",
+                    cursive;
+                  transition: fill 0.35s ease;
+                }
+                #preview-stats .pv-value {
+                  fill: var(--preview-title);
+                  font:
+                    700 16px "Indie Flower",
+                    "Comic Sans MS",
+                    cursive;
+                  transition: fill 0.35s ease;
+                }
+                #preview-stats .pv-icon {
+                  fill: var(--preview-icon);
+                  transition: fill 0.35s ease;
+                }
+                #preview-stats .pv-box {
+                  stroke: var(--preview-text);
+                  transition: stroke 0.35s ease;
+                }
+              </style>
+            </defs>
+            <rect
+              class="pv-bg"
+              x="2"
+              y="2"
+              width="496"
+              height="236"
+              rx="4.5"
+              stroke-width="2.5"
+            />
+            <g transform="translate(25, 30) rotate(-1)">
+              <text class="pv-title" y="0">torvalds's GitHub Stats</text>
+              <path
+                class="pv-underline"
+                d="M 0 8 Q 50 10, 100 8 T 200 8"
+                stroke-width="2"
+                fill="none"
+                opacity="0.5"
+              />
+            </g>
+            <g transform="translate(20, 55) rotate(-1.5)">
+              <rect
+                class="pv-box"
+                x="0"
+                y="0"
+                width="220"
+                height="45"
+                rx="8"
+                ry="8"
+                fill="rgba(255,255,255,0.05)"
+                stroke-width="1.5"
+                stroke-dasharray="3,3"
+                opacity="0.4"
+              />
+              <svg x="8" y="8" width="16" height="16" viewBox="0 0 16 16">
+                <path
+                  class="pv-icon"
+                  fill-rule="evenodd"
+                  d="M8 .25a.75.75 0 01.673.418l1.882 3.815 4.21.612a.75.75 0 01.416 1.279l-3.046 2.97.719 4.192a.75.75 0 01-1.088.791L8 12.347l-3.766 1.98a.75.75 0 01-1.088-.79l.72-4.194L.818 6.374a.75.75 0 01.416-1.28l4.21-.611L7.327.668A.75.75 0 018 .25zm0 2.445L6.615 5.5a.75.75 0 01-.564.41l-3.097.45 2.24 2.184a.75.75 0 01.216.664l-.528 3.084 2.769-1.456a.75.75 0 01.698 0l2.77 1.456-.53-3.084a.75.75 0 01.216-.664l2.24-2.183-3.096-.45a.75.75 0 01-.564-.41L8 2.694v.001z"
+                />
+              </svg>
+              <text class="pv-label" x="30" y="20">Total Stars</text>
+              <text class="pv-value" x="30" y="36">12,456</text>
+            </g>
+            <g transform="translate(260, 55) rotate(1.2)">
+              <rect
+                class="pv-box"
+                x="0"
+                y="0"
+                width="220"
+                height="45"
+                rx="8"
+                ry="8"
+                fill="rgba(255,255,255,0.05)"
+                stroke-width="1.5"
+                stroke-dasharray="3,3"
+                opacity="0.4"
+              />
+              <svg x="8" y="8" width="16" height="16" viewBox="0 0 16 16">
+                <path
+                  class="pv-icon"
+                  fill-rule="evenodd"
+                  d="M1.643 3.143L.427 1.927A.25.25 0 000 2.104V5.75c0 .138.112.25.25.25h3.646a.25.25 0 00.177-.427L2.715 4.215a6.5 6.5 0 11-1.18 4.458.75.75 0 10-1.493.154 8.001 8.001 0 101.6-5.684zM7.75 4a.75.75 0 01.75.75v2.992l2.028.812a.75.75 0 01-.557 1.392l-2.5-1A.75.75 0 017 8.25v-3.5A.75.75 0 017.75 4z"
+                />
+              </svg>
+              <text class="pv-label" x="30" y="20">Total Commits</text>
+              <text class="pv-value" x="30" y="36">4,892</text>
+            </g>
+            <g transform="translate(20, 115) rotate(0.8)">
+              <rect
+                class="pv-box"
+                x="0"
+                y="0"
+                width="220"
+                height="45"
+                rx="8"
+                ry="8"
+                fill="rgba(255,255,255,0.05)"
+                stroke-width="1.5"
+                stroke-dasharray="3,3"
+                opacity="0.4"
+              />
+              <svg x="8" y="8" width="16" height="16" viewBox="0 0 16 16">
+                <path
+                  class="pv-icon"
+                  fill-rule="evenodd"
+                  d="M7.177 3.073L9.573.677A.25.25 0 0110 .854v4.792a.25.25 0 01-.427.177L7.177 3.427a.25.25 0 010-.354zM3.75 2.5a.75.75 0 100 1.5.75.75 0 000-1.5zm-2.25.75a2.25 2.25 0 113 2.122v5.256a2.251 2.251 0 11-1.5 0V5.372A2.25 2.25 0 011.5 3.25zM11 2.5h-1V4h1a1 1 0 011 1v5.628a2.251 2.251 0 101.5 0V5A2.5 2.5 0 0011 2.5zm1 10.25a.75.75 0 111.5 0 .75.75 0 01-1.5 0zM3.75 12a.75.75 0 100 1.5.75.75 0 000-1.5z"
+                />
+              </svg>
+              <text class="pv-label" x="30" y="20">Total PRs</text>
+              <text class="pv-value" x="30" y="36">234</text>
+            </g>
+            <g transform="translate(260, 115) rotate(-1)">
+              <rect
+                class="pv-box"
+                x="0"
+                y="0"
+                width="220"
+                height="45"
+                rx="8"
+                ry="8"
+                fill="rgba(255,255,255,0.05)"
+                stroke-width="1.5"
+                stroke-dasharray="3,3"
+                opacity="0.4"
+              />
+              <svg x="8" y="8" width="16" height="16" viewBox="0 0 16 16">
+                <path
+                  class="pv-icon"
+                  fill-rule="evenodd"
+                  d="M8 1.5a6.5 6.5 0 100 13 6.5 6.5 0 000-13zM0 8a8 8 0 1116 0A8 8 0 010 8zm9 3a1 1 0 11-2 0 1 1 0 012 0zm-.25-6.25a.75.75 0 00-1.5 0v3.5a.75.75 0 001.5 0v-3.5z"
+                />
+              </svg>
+              <text class="pv-label" x="30" y="20">Total Issues</text>
+              <text class="pv-value" x="30" y="36">891</text>
+            </g>
+            <g transform="translate(20, 175) rotate(1.5)">
+              <rect
+                class="pv-box"
+                x="0"
+                y="0"
+                width="220"
+                height="45"
+                rx="8"
+                ry="8"
+                fill="rgba(255,255,255,0.05)"
+                stroke-width="1.5"
+                stroke-dasharray="3,3"
+                opacity="0.4"
+              />
+              <svg x="8" y="8" width="16" height="16" viewBox="0 0 16 16">
+                <path
+                  class="pv-icon"
+                  fill-rule="evenodd"
+                  d="M2 2.5A2.5 2.5 0 014.5 0h8.75a.75.75 0 01.75.75v12.5a.75.75 0 01-.75.75h-2.5a.75.75 0 110-1.5h1.75v-2h-8a1 1 0 00-.714 1.7.75.75 0 01-1.072 1.05A2.495 2.495 0 012 11.5v-9zm10.5-1V9h-8c-.356 0-.694.074-1 .208V2.5a1 1 0 011-1h8zM5 12.25v3.25a.25.25 0 00.4.2l1.45-1.087a.25.25 0 01.3 0L8.6 15.7a.25.25 0 00.4-.2v-3.25a.25.25 0 00-.25-.25h-3.5a.25.25 0 00-.25.25z"
+                />
+              </svg>
+              <text class="pv-label" x="30" y="20">Total Repos</text>
+              <text class="pv-value" x="30" y="36">42</text>
+            </g>
+          </svg>
+
+          <!-- Repo Stats Card Preview -->
+          <svg
+            class="preview-svg"
+            id="preview-repo"
+            width="500"
+            height="200"
+            viewBox="0 0 500 200"
+            xmlns="http://www.w3.org/2000/svg"
+            role="img"
+            style="display: none"
+          >
+            <defs>
+              <style>
+                @import url("https://fonts.googleapis.com/css2?family=Indie+Flower&amp;family=Permanent+Marker&amp;display=swap");
+                #preview-repo .pv-bg {
+                  fill: var(--preview-bg);
+                  stroke: var(--preview-border);
+                  transition:
+                    fill 0.35s ease,
+                    stroke 0.35s ease;
+                }
+                #preview-repo .pv-title {
+                  fill: var(--preview-title);
+                  font:
+                    700 22px "Permanent Marker",
+                    "Comic Sans MS",
+                    cursive;
+                  transition: fill 0.35s ease;
+                }
+                #preview-repo .pv-underline {
+                  stroke: var(--preview-title);
+                  transition: stroke 0.35s ease;
+                }
+                #preview-repo .pv-label {
+                  fill: var(--preview-text);
+                  font:
+                    400 13px "Indie Flower",
+                    "Comic Sans MS",
+                    cursive;
+                  transition: fill 0.35s ease;
+                }
+                #preview-repo .pv-value {
+                  fill: var(--preview-title);
+                  font:
+                    700 16px "Indie Flower",
+                    "Comic Sans MS",
+                    cursive;
+                  transition: fill 0.35s ease;
+                }
+                #preview-repo .pv-icon {
+                  fill: var(--preview-icon);
+                  transition: fill 0.35s ease;
+                }
+                #preview-repo .pv-box {
+                  stroke: var(--preview-text);
+                  transition: stroke 0.35s ease;
+                }
+              </style>
+            </defs>
+            <rect
+              class="pv-bg"
+              x="2"
+              y="2"
+              width="496"
+              height="196"
+              rx="4.5"
+              stroke-width="2.5"
+            />
+            <g transform="translate(25, 30) rotate(-1)">
+              <text class="pv-title" y="0">torvalds/linux</text>
+              <path
+                class="pv-underline"
+                d="M 0 8 Q 50 10, 100 8 T 200 8"
+                stroke-width="2"
+                fill="none"
+                opacity="0.5"
+              />
+            </g>
+            <g transform="translate(20, 55) rotate(-1.5)">
+              <rect
+                class="pv-box"
+                x="0"
+                y="0"
+                width="220"
+                height="45"
+                rx="8"
+                ry="8"
+                fill="rgba(255,255,255,0.05)"
+                stroke-width="1.5"
+                stroke-dasharray="3,3"
+                opacity="0.4"
+              />
+              <svg x="8" y="8" width="16" height="16" viewBox="0 0 16 16">
+                <path
+                  class="pv-icon"
+                  fill-rule="evenodd"
+                  d="M8 .25a.75.75 0 01.673.418l1.882 3.815 4.21.612a.75.75 0 01.416 1.279l-3.046 2.97.719 4.192a.75.75 0 01-1.088.791L8 12.347l-3.766 1.98a.75.75 0 01-1.088-.79l.72-4.194L.818 6.374a.75.75 0 01.416-1.28l4.21-.611L7.327.668A.75.75 0 018 .25zm0 2.445L6.615 5.5a.75.75 0 01-.564.41l-3.097.45 2.24 2.184a.75.75 0 01.216.664l-.528 3.084 2.769-1.456a.75.75 0 01.698 0l2.77 1.456-.53-3.084a.75.75 0 01.216-.664l2.24-2.183-3.096-.45a.75.75 0 01-.564-.41L8 2.694v.001z"
+                />
+              </svg>
+              <text class="pv-label" x="30" y="20">Stars</text>
+              <text class="pv-value" x="30" y="36">180,432</text>
+            </g>
+            <g transform="translate(260, 55) rotate(1.2)">
+              <rect
+                class="pv-box"
+                x="0"
+                y="0"
+                width="220"
+                height="45"
+                rx="8"
+                ry="8"
+                fill="rgba(255,255,255,0.05)"
+                stroke-width="1.5"
+                stroke-dasharray="3,3"
+                opacity="0.4"
+              />
+              <svg x="8" y="8" width="16" height="16" viewBox="0 0 16 16">
+                <path
+                  class="pv-icon"
+                  fill-rule="evenodd"
+                  d="M5 3.25a.75.75 0 11-1.5 0 .75.75 0 011.5 0zm0 2.122a2.25 2.25 0 10-1.5 0v.878A2.25 2.25 0 005.75 8.5h1.5v2.128a2.251 2.251 0 101.5 0V8.5h1.5a2.25 2.25 0 002.25-2.25v-.878a2.25 2.25 0 10-1.5 0v.878a.75.75 0 01-.75.75h-4.5A.75.75 0 015 6.25v-.878zm3.75 7.378a.75.75 0 11-1.5 0 .75.75 0 011.5 0zm3-8.75a.75.75 0 11-1.5 0 .75.75 0 011.5 0z"
+                />
+              </svg>
+              <text class="pv-label" x="30" y="20">Forks</text>
+              <text class="pv-value" x="30" y="36">52,841</text>
+            </g>
+            <g transform="translate(20, 115) rotate(0.8)">
+              <rect
+                class="pv-box"
+                x="0"
+                y="0"
+                width="220"
+                height="45"
+                rx="8"
+                ry="8"
+                fill="rgba(255,255,255,0.05)"
+                stroke-width="1.5"
+                stroke-dasharray="3,3"
+                opacity="0.4"
+              />
+              <svg x="8" y="8" width="16" height="16" viewBox="0 0 16 16">
+                <path
+                  class="pv-icon"
+                  fill-rule="evenodd"
+                  d="M2 2.5A2.5 2.5 0 014.5 0h8.75a.75.75 0 01.75.75v12.5a.75.75 0 01-.75.75h-2.5a.75.75 0 110-1.5h1.75v-2h-8a1 1 0 00-.714 1.7.75.75 0 01-1.072 1.05A2.495 2.495 0 012 11.5v-9zm10.5-1V9h-8c-.356 0-.694.074-1 .208V2.5a1 1 0 011-1h8zM5 12.25v3.25a.25.25 0 00.4.2l1.45-1.087a.25.25 0 01.3 0L8.6 15.7a.25.25 0 00.4-.2v-3.25a.25.25 0 00-.25-.25h-3.5a.25.25 0 00-.25.25z"
+                />
+              </svg>
+              <text class="pv-label" x="30" y="20">Language</text>
+              <text class="pv-value" x="30" y="36">C</text>
+            </g>
+            <g transform="translate(260, 115) rotate(-1)">
+              <rect
+                class="pv-box"
+                x="0"
+                y="0"
+                width="220"
+                height="45"
+                rx="8"
+                ry="8"
+                fill="rgba(255,255,255,0.05)"
+                stroke-width="1.5"
+                stroke-dasharray="3,3"
+                opacity="0.4"
+              />
+              <svg x="8" y="8" width="16" height="16" viewBox="0 0 16 16">
+                <path
+                  class="pv-icon"
+                  fill-rule="evenodd"
+                  d="M8 1.5a6.5 6.5 0 100 13 6.5 6.5 0 000-13zM0 8a8 8 0 1116 0A8 8 0 010 8zm9 3a1 1 0 11-2 0 1 1 0 012 0zm-.25-6.25a.75.75 0 00-1.5 0v3.5a.75.75 0 001.5 0v-3.5z"
+                />
+              </svg>
+              <text class="pv-label" x="30" y="20">Open Issues</text>
+              <text class="pv-value" x="30" y="36">438</text>
+            </g>
+          </svg>
+
+          <!-- Top Languages Card Preview -->
+          <svg
+            class="preview-svg"
+            id="preview-langs"
+            width="450"
+            height="340"
+            viewBox="0 0 450 340"
+            xmlns="http://www.w3.org/2000/svg"
+            role="img"
+            style="display: none"
+          >
+            <defs>
+              <style>
+                @import url("https://fonts.googleapis.com/css2?family=Indie+Flower&amp;family=Permanent+Marker&amp;display=swap");
+                #preview-langs .pv-bg {
+                  fill: var(--preview-bg);
+                  stroke: var(--preview-border);
+                  transition:
+                    fill 0.35s ease,
+                    stroke 0.35s ease;
+                }
+                #preview-langs .pv-title {
+                  fill: var(--preview-title);
+                  font:
+                    700 22px "Permanent Marker",
+                    "Comic Sans MS",
+                    cursive;
+                  transition: fill 0.35s ease;
+                }
+                #preview-langs .pv-underline {
+                  stroke: var(--preview-title);
+                  transition: stroke 0.35s ease;
+                }
+                #preview-langs .pv-label {
+                  fill: var(--preview-text);
+                  font:
+                    400 13px "Indie Flower",
+                    "Comic Sans MS",
+                    cursive;
+                  transition: fill 0.35s ease;
+                }
+                #preview-langs .pv-value {
+                  fill: var(--preview-title);
+                  font:
+                    700 16px "Indie Flower",
+                    "Comic Sans MS",
+                    cursive;
+                  transition: fill 0.35s ease;
+                }
+                #preview-langs .pv-box {
+                  stroke: var(--preview-text);
+                  transition: stroke 0.35s ease;
+                }
+                #preview-langs .pv-lang-bar-bg {
+                  stroke: var(--preview-border);
+                  transition: stroke 0.35s ease;
+                }
+                #preview-langs .pv-lang-bar {
+                  fill: var(--preview-icon);
+                  transition: fill 0.35s ease;
+                }
+              </style>
+            </defs>
+            <rect
+              class="pv-bg"
+              x="2"
+              y="2"
+              width="446"
+              height="336"
+              rx="4.5"
+              stroke-width="2.5"
+            />
+            <g transform="translate(25, 30) rotate(-1)">
+              <text class="pv-title" y="0">torvalds's Top Languages</text>
+              <path
+                class="pv-underline"
+                d="M 0 8 Q 50 10, 100 8 T 200 8"
+                stroke-width="2"
+                fill="none"
+                opacity="0.5"
+              />
+            </g>
+            <g transform="translate(20, 55)">
+              <rect
+                class="pv-box"
+                x="0"
+                y="0"
+                width="410"
+                height="40"
+                rx="8"
+                ry="8"
+                fill="rgba(255,255,255,0.03)"
+                stroke-width="1.5"
+                stroke-dasharray="3,3"
+                opacity="0.3"
+              />
+              <text class="pv-label" x="15" y="16">C</text>
+              <text class="pv-value" x="385" y="16" text-anchor="end">
+                92.5%
+              </text>
+              <rect
+                class="pv-lang-bar-bg"
+                x="15"
+                y="22"
+                width="380"
+                height="10"
+                rx="5"
+                ry="5"
+                fill="none"
+                stroke-width="1"
+                opacity="0.3"
+              />
+              <rect
+                class="pv-lang-bar"
+                x="15"
+                y="22"
+                width="333"
+                height="10"
+                rx="5"
+                ry="5"
+                opacity="0.8"
+              />
+            </g>
+            <g transform="translate(20, 105)">
+              <rect
+                class="pv-box"
+                x="0"
+                y="0"
+                width="410"
+                height="40"
+                rx="8"
+                ry="8"
+                fill="rgba(255,255,255,0.03)"
+                stroke-width="1.5"
+                stroke-dasharray="3,3"
+                opacity="0.3"
+              />
+              <text class="pv-label" x="15" y="16">Python</text>
+              <text class="pv-value" x="385" y="16" text-anchor="end">
+                3.2%
+              </text>
+              <rect
+                class="pv-lang-bar-bg"
+                x="15"
+                y="22"
+                width="380"
+                height="10"
+                rx="5"
+                ry="5"
+                fill="none"
+                stroke-width="1"
+                opacity="0.3"
+              />
+              <rect
+                class="pv-lang-bar"
+                x="15"
+                y="22"
+                width="12"
+                height="10"
+                rx="5"
+                ry="5"
+                opacity="0.8"
+              />
+            </g>
+            <g transform="translate(20, 155)">
+              <rect
+                class="pv-box"
+                x="0"
+                y="0"
+                width="410"
+                height="40"
+                rx="8"
+                ry="8"
+                fill="rgba(255,255,255,0.03)"
+                stroke-width="1.5"
+                stroke-dasharray="3,3"
+                opacity="0.3"
+              />
+              <text class="pv-label" x="15" y="16">Makefile</text>
+              <text class="pv-value" x="385" y="16" text-anchor="end">
+                1.8%
+              </text>
+              <rect
+                class="pv-lang-bar-bg"
+                x="15"
+                y="22"
+                width="380"
+                height="10"
+                rx="5"
+                ry="5"
+                fill="none"
+                stroke-width="1"
+                opacity="0.3"
+              />
+              <rect
+                class="pv-lang-bar"
+                x="15"
+                y="22"
+                width="7"
+                height="10"
+                rx="5"
+                ry="5"
+                opacity="0.8"
+              />
+            </g>
+            <g transform="translate(20, 205)">
+              <rect
+                class="pv-box"
+                x="0"
+                y="0"
+                width="410"
+                height="40"
+                rx="8"
+                ry="8"
+                fill="rgba(255,255,255,0.03)"
+                stroke-width="1.5"
+                stroke-dasharray="3,3"
+                opacity="0.3"
+              />
+              <text class="pv-label" x="15" y="16">Shell</text>
+              <text class="pv-value" x="385" y="16" text-anchor="end">
+                1.2%
+              </text>
+              <rect
+                class="pv-lang-bar-bg"
+                x="15"
+                y="22"
+                width="380"
+                height="10"
+                rx="5"
+                ry="5"
+                fill="none"
+                stroke-width="1"
+                opacity="0.3"
+              />
+              <rect
+                class="pv-lang-bar"
+                x="15"
+                y="22"
+                width="4"
+                height="10"
+                rx="5"
+                ry="5"
+                opacity="0.8"
+              />
+            </g>
+            <g transform="translate(20, 255)">
+              <rect
+                class="pv-box"
+                x="0"
+                y="0"
+                width="410"
+                height="40"
+                rx="8"
+                ry="8"
+                fill="rgba(255,255,255,0.03)"
+                stroke-width="1.5"
+                stroke-dasharray="3,3"
+                opacity="0.3"
+              />
+              <text class="pv-label" x="15" y="16">Perl</text>
+              <text class="pv-value" x="385" y="16" text-anchor="end">
+                0.9%
+              </text>
+              <rect
+                class="pv-lang-bar-bg"
+                x="15"
+                y="22"
+                width="380"
+                height="10"
+                rx="5"
+                ry="5"
+                fill="none"
+                stroke-width="1"
+                opacity="0.3"
+              />
+              <rect
+                class="pv-lang-bar"
+                x="15"
+                y="22"
+                width="3"
+                height="10"
+                rx="5"
+                ry="5"
+                opacity="0.8"
+              />
+            </g>
+          </svg>
         </div>
       </div>
 
@@ -706,6 +1447,115 @@
     </div>
 
     <script>
+      const themeColors = {
+        default: {
+          bg: "#fffef9",
+          title: "#ff6b6b",
+          text: "#5f6368",
+          icon: "#4ecdc4",
+          border: "#ff6b6b",
+        },
+        dark: {
+          bg: "#1a1a2e",
+          title: "#f4d35e",
+          text: "#e8e8e8",
+          icon: "#95e1d3",
+          border: "#f4d35e",
+        },
+        radical: {
+          bg: "#141321",
+          title: "#ff6bcb",
+          text: "#a9fef7",
+          icon: "#ffd93d",
+          border: "#ff6bcb",
+        },
+        merko: {
+          bg: "#0f1c14",
+          title: "#c1ff72",
+          text: "#68b587",
+          icon: "#ffeb3b",
+          border: "#c1ff72",
+        },
+        gruvbox: {
+          bg: "#282828",
+          title: "#fabd2f",
+          text: "#8ec07c",
+          icon: "#fe8019",
+          border: "#fabd2f",
+        },
+        tokyonight: {
+          bg: "#1a1b27",
+          title: "#70a5fd",
+          text: "#38bdae",
+          icon: "#bf91f3",
+          border: "#70a5fd",
+        },
+        bubblegum: {
+          bg: "#fff0f5",
+          title: "#ff1493",
+          text: "#8b4789",
+          icon: "#ff69b4",
+          border: "#ff69b4",
+        },
+        ocean: {
+          bg: "#e0f7ff",
+          title: "#0077be",
+          text: "#2c5f7c",
+          icon: "#00d4ff",
+          border: "#00a8e8",
+        },
+      };
+
+      function applyTheme(themeName) {
+        const theme = themeColors[themeName];
+        if (!theme) return;
+
+        document.querySelectorAll(".preview-svg").forEach((svg) => {
+          svg.style.setProperty("--preview-bg", theme.bg);
+          svg.style.setProperty("--preview-title", theme.title);
+          svg.style.setProperty("--preview-text", theme.text);
+          svg.style.setProperty("--preview-icon", theme.icon);
+          svg.style.setProperty("--preview-border", theme.border);
+        });
+
+        document
+          .querySelectorAll("#theme-grid .theme-badge")
+          .forEach((badge) => {
+            const isActive = badge.dataset.theme === themeName;
+            badge.classList.toggle("active", isActive);
+            if (isActive) {
+              badge.style.background = theme.bg;
+              badge.style.color = theme.title;
+              badge.style.borderColor = theme.border;
+            } else {
+              badge.style.background = "";
+              badge.style.color = "";
+              badge.style.borderColor = "";
+            }
+          });
+      }
+
+      function switchCardType(cardType) {
+        document.querySelectorAll(".preview-svg").forEach((svg) => {
+          svg.style.display =
+            svg.id === "preview-" + cardType ? "block" : "none";
+        });
+        document.querySelectorAll(".card-type-btn").forEach((btn) => {
+          btn.classList.toggle("active", btn.dataset.card === cardType);
+        });
+      }
+
+      document.querySelectorAll("#theme-grid .theme-badge").forEach((badge) => {
+        badge.addEventListener("click", () => applyTheme(badge.dataset.theme));
+      });
+
+      document.querySelectorAll(".card-type-btn").forEach((btn) => {
+        btn.addEventListener("click", () => switchCardType(btn.dataset.card));
+      });
+
+      applyTheme("default");
+      switchCardType("stats");
+
       function copyToClipboard(button) {
         const codeBlock = button.parentElement;
         const codeText = codeBlock.querySelector(".code-text").textContent;
